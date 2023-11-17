@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+
+    
+    <!-- Load external CSS styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap" rel="stylesheet">
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+   body{
+      background-image: url('../image/simple-conv-img.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f0f0f0;
+      magin: 5;
+      padding: 5;
+
+    }
+</style>
+</head>
+<body>
+
+ <h1>Simple Computations</h1>
+<br><br>
+<br><br>
+<br><br>
+
+    <label for="typeconv">Please select Conversion Type:</label>
+    <select id="typeconv">
+        <option value="FahtoC">Fahrenheit to Celsius</option>
+        <option value="CeltoFah">Celsius to Fahrenheit</option>
+        <option value="MetoFe">Meters to Feet</option>
+        <option value="FetoMe">Feet to Meters</option>
+    </select>
+
+    <br>
+
+    <label for="inV">Enter Value:</label>
+    <input type="text" id="inV" placeholder="Enter the value">
+
+    <br>
+
+    <button onclick="convert()">Convert</button>
+
+    <br><br>
+
+
+    <h3 id="result"></h3>
+
+</body>
+
+    <!-- CODE OF JS For all conversions using switch case-->
+    <script>
+       function convert() {
+            var typeconv = document.getElementById("typeconv").value;
+            var inV = parseFloat(document.getElementById("inV").value);
+            //checks if value inputed is a number
+            if (isNaN(inV)) {
+                alert("Please enter a valid number for conversion.");
+                return;
+            }
+
+            var result;
+
+            switch (typeconv) {
+                case "FahtoC":
+                    result = (inV - 32) * 5 / 9;
+                    document.getElementById("result").innerHTML = inV + "°F is equal to " + result.toFixed(2) + "°C";
+                    break;
+                case "CeltoFah":
+                    result = (inV * 9 / 5) + 32;
+                    document.getElementById("result").innerHTML = inV+ "°C is equal to " + result.toFixed(2) + "°F";
+                    break;
+                case "MetoFe":
+                    result = inV * 3.281;
+                    document.getElementById("result").innerHTML = inV+ " meters is equal to " + result.toFixed(2) + " feet";
+                    break;
+                case "FetoMe":
+                    result = inV / 3.281;
+                    document.getElementById("result").innerHTML = inV + " feet is equal to " + result.toFixed(2) + " meters";
+                    break;
+                default:
+                    alert("Invalid conversion type.");
+                    break;
+            }
+        }
+    </script>
+</html>
